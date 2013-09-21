@@ -62,6 +62,27 @@ vows.describe("cli").addBatch({
 
     },
 
+    "when given a config file with blacklisted files to ignore": {
+
+        topic: ["tests/fixtures/configurations/single-quotes"],
+
+        "should load and execute without error": function(topic) {
+            var log = console.log,
+                exitStatus;
+
+            // Assign console.log to noop to skip CLI output
+            console.log = function() {};
+
+            assert.doesNotThrow(function () {
+                exitStatus = cli.execute(topic);
+            });
+            console.log = log;
+
+            assert.equal(exitStatus, 0);
+        }
+
+    },
+
     "when given a config with rules with options and severity level set to error": {
         topic: ["--config", "tests/fixtures/configurations/quotes-error.json", "single-quoted.js"],
 
