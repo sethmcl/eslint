@@ -47,4 +47,22 @@ vows.describe("config").addBatch({
         }
     },
 
+    "resolveBlacklistPaths": {
+
+        topic: {
+            blacklist: ["foo.js", "../treasure"]
+        },
+
+        "should resolve paths": function(topic) {
+
+            var configHelper = new Config(),
+              dir = "/Users/superman/dev/js",
+              expected = ["/Users/superman/dev/js/foo.js", "/Users/superman/dev/treasure"],
+              actual = configHelper.resolveBlacklistPaths(topic, dir);
+
+            assert(expected, actual.blacklist);
+        }
+    }
+
+
 }).export(module);

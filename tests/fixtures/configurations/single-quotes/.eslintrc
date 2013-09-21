@@ -5,5 +5,7 @@
 
     "rules": {
         "quotes": [1, "single"]
-    }
+    },
+
+    "blacklist": ["bad-boy.js", "group"]
 }
